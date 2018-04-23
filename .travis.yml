@@ -10,11 +10,15 @@ install:
   - sudo apt-get -y install binutils build-essential texinfo tcl8.5 tcl8.5-dev tk8.5 tk8.5-dev itcl3 itcl3-dev itk3 iwidgets4
 
 script:
+  - mkdir dest
   - cd insight/
   - autoconf
   - chmod +x configure
   - ./configure
   - make -j4
+  - make DESTDIR=../dest install -j4
+  - cd ..
+  - ls -R dest
 
 after_success:
   - # wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
