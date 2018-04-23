@@ -1,0 +1,3 @@
+[submodule "insight"]
+	path = insight
+	url = git://sourceware.org/git/insight.git

@@ -1,0 +1,26 @@
+language: cpp
+compiler: gcc
+sudo: require
+dist: trusty
+
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  - sudo apt-get -y install tcl8.5 tcl8.5-dev tk8.5 tk8.5-dev itcl3 itcl3-dev itk3 iwidgets4
+
+script:
+  - cd insight/
+  - autoconf
+  - chmod +x configure
+  - ./configure
+  - make -j4
+
+after_success:
+  - # wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
+  - # bash upload.sh AppImageUpdater*.AppImage *zsync
+  
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)/
