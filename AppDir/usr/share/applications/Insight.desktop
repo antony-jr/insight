@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Insight
+Type=Application
+Exec=insight
+Icon=insight-icon
+Terminal=false
+Categories=System;
+Comment=The GUI front-end of GDB with Tcl/Tk.
