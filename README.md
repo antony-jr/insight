@@ -1,4 +1,4 @@
-# Insight
+# Insight [![Build Status](https://travis-ci.org/antony-jr/insight.svg?branch=master)](https://travis-ci.org/antony-jr/insight)
  
 **Insight** is a graphical user interface to **GDB**, the **GNU Debugger** written in **Tcl/Tk** by people working at **Red Hat, Inc**. and **Cygnus Solutions**. Red Hat has generously **donated** Insight to the **public** and even pays a few people to work on it occasionally.
 
