@@ -19,13 +19,14 @@ script:
   - make -j4
   - make DESTDIR=$install_dir install -j4
   - cd ..
-  - ls -R dest
   - cp -p -r dest/usr/local/* AppDir/usr/
-  - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
-  - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - export VERSION=$(git rev-parse --short HEAD)
-  - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -bundle-non-qt-libs
-  - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+  - wget -nv https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+  - chmod +x appimagetool-x86_64.AppImage
+  - wget -O AppDir/AppRun https://github.com/AppImage/AppImageKit/releases/download/continuous/AppRun-x86_64
+  - chmod +x AppDir/AppRun
+  - ./appimagetool-x86_64.AppImage -n -g AppDir
+
 
 after_success:
   - # wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
