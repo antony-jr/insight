@@ -17,7 +17,6 @@ script:
   - chmod +x configure
   - ./configure
   - make -j$(nproc)
-  - cd bundle
   - make DESTDIR=$install_dir install -j4
   - cd ..
   - cp -p -r dest/usr/local/* AppDir/usr/
