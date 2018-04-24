@@ -20,7 +20,7 @@ script:
   - make DESTDIR=$install_dir install -j4
   - cd ..
   - cp -p -r dest/usr/local/* AppDir/usr/
-  - export VERSION=$(git rev-parse --short HEAD)
+  - export VERSION=continuous
   - wget -nv https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
   - chmod +x appimagetool-x86_64.AppImage
   - wget -O AppDir/AppRun https://github.com/AppImage/AppImageKit/releases/download/continuous/AppRun-x86_64
@@ -30,8 +30,8 @@ script:
 
 after_success:
   - # wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
-  - # bash upload.sh AppImageUpdater*.AppImage *zsync
-  - curl --upload-file *.AppImage https://transfer.sh/Insight.AppImage
+  - # bash upload.sh *.AppImage *zsync
+  - curl --upload-file ./Insight-continuous-x86_64.AppImage https://transfer.sh/Insight.AppImage
   
 branches:
   except:
