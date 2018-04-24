@@ -26,7 +26,6 @@ script:
   - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -bundle-non-qt-libs
   - cp /usr/share/tcltk -p -r AppDir/usr/share/
   - cp /usr/bin/tclsh8.5 -p -r AppDir/usr/bin/
-  - mkdir AppDir/usr/include
   - cp /usr/include/tcl8.5 -p -r AppDir/usr/include/
   - cp /usr/lib/tcl8.5 -p -r AppDir/usr/lib/
   - cp /usr/lib/tk8.5 -p -r AppDir/usr/lib/

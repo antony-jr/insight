@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Insight
 Type=Application
-Exec=insight-wrapper
+Exec=insight
 Icon=insight-icon
 Terminal=false
 Categories=System;
