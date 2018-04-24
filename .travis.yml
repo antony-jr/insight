@@ -24,6 +24,7 @@ script:
   - wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
   - chmod +x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -bundle-non-qt-libs
+  - cp /usr/share/tcltk -p -r AppDir/usr/share/
   - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -appimage
 
 after_success:
