@@ -49,6 +49,10 @@ script:
   - cp /usr/lib/libitk3.3.so -p AppDir/usr/lib/
   - cp /usr/lib/libitkstub3.3.a -p AppDir/usr/lib/
   - cp /usr/lib/python2.7 -p -r AppDir/usr/lib/
+  - rm AppDir/AppRun
+  - cp Insight.desktop AppDir/Insight.desktop
+  - wget -O AppDir/AppRun  wget https://github.com/AppImage/AppImageKit/releases/download/continuous/AppRun-x86_64
+  - chmod +x AppDir/AppRun
   - wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
   - chmod +x appimagetool-x86_64.AppImage
   - ./appimagetool-x86_64.AppImage -g AppDir
