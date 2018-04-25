@@ -61,7 +61,8 @@ script:
 after_success:
   - # wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
   - # bash upload.sh *.AppImage *zsync
-  - curl --upload-file ./Insight-continuous-x86_64.AppImage https://transfer.sh/Insight.AppImage
+  - curl --upload-file ./Insight-continuous-x86_64.AppImage https://transfer.sh/Insight-continuous-x86_64.AppImage
+  - curl --upload-file ./Insight-continuous-x86_64.AppImage.zsync https://transfer.sh/Insight-continuous-x86_64.AppImage.zsync
 
 branches:
   except:
