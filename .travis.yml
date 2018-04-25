@@ -23,8 +23,7 @@ script:
   - ./appimagetool-x86_64.AppImage -g AppDir
 
 after_success:
-  - wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
-  - bash upload.sh *.AppImage *zsync
+  - bash scripts/upload.sh *.AppImage *zsync
 
 branches:
   except:
