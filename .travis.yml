@@ -23,7 +23,7 @@ script:
   - ./appimagetool-x86_64.AppImage -g AppDir
 
 after_success:
-  - bash scripts/upload.sh *.AppImage *zsync
+  - bash scripts/upload.sh Insight-continuous-x86_64.AppImage *zsync
 
 branches:
   except:
