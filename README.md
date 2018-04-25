@@ -36,7 +36,9 @@ Infact you **don't even have to install anything** , **Just download a binary an
 > A Tcl/Tk Frontend for GDB. This is a portable package of insight for the sake of Jeff Duntemann's amazing book.
 > -- Antony Jr.
 
-**Important Note:** Please use **absolute paths** when using command line arguments like ``` -q ./YourApp ```.   
+
+**Important note:** Please use **absolute paths** when using command line arguments like ``` -q ./YourApp ```.   
+
 If you want support for **32 bits** then rise a issue because nowadays mordern pc's are not **32 bits** but the I'm
 reading is dealing with **IA-32** , Irony!
 
