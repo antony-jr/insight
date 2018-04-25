@@ -48,7 +48,10 @@ script:
   - cp /usr/lib/libitk3.3.so.1 -p AppDir/usr/lib/
   - cp /usr/lib/libitk3.3.so -p AppDir/usr/lib/
   - cp /usr/lib/libitkstub3.3.a -p AppDir/usr/lib/
-  - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -appimage
+  - cp /usr/lib/python2.7 -p -r AppDir/usr/lib/
+  - wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+  - chmod +x appimagetool-x86_64.AppImage
+  - ./appimagetool-x86_64.AppImage -g AppDir
 
 after_success:
   - # wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
