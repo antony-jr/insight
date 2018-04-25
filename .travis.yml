@@ -7,51 +7,15 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get -y install binutils build-essential texinfo tcl8.5 tcl8.5-dev tk8.5 tk8.5-dev itcl3 itcl3-dev itk3 itk3-dev iwidgets4
+  - sudo bash scripts/install_deps.sh
 
 script:
-  - mkdir dest
-  - install_dir=$(pwd)/dest
-  - cd insight/
-  - autoconf
-  - chmod +x configure
-  - ./configure
-  - make -j$(nproc)
-  - make DESTDIR=$install_dir install -j4
-  - cd ..
-  - cp -p -r dest/usr/local/* AppDir/usr/
+  - bash scripts/build_and_bundle.sh
   - export VERSION=continuous
   - wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
   - chmod +x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -bundle-non-qt-libs
-  - cp /usr/share/tcltk -p -r AppDir/usr/share/
-  - cp /usr/share/tcltk/* -p -r AppDir/usr/lib/
-  - cp /usr/bin/tclsh8.5 -p -r AppDir/usr/bin/
-  - cp /usr/include/tcl8.5 -p -r AppDir/usr/include/
-  - cp /usr/lib/tcl8.5 -p -r AppDir/usr/lib/
-  - cp /usr/lib/tk8.5 -p -r AppDir/usr/lib/
-  - cp /usr/lib/tcltk -p -r AppDir/usr/lib/
-  - mkdir AppDir/usr/lib/x86_64-linux-gnu
-  - cp /usr/lib/x86_64-linux-gnu/libtcl8.5.a -p AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/lib/x86_64-linux-gnu/libtclstub8.5.a -p AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/lib/x86_64-linux-gnu/tcl8.5 -p -r AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/lib/x86_64-linux-gnu/tk8.5 -p -r AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/lib/x86_64-linux-gnu/libtk8.5.a -p AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/lib/x86_64-linux-gnu/libtkstub8.5.a -p AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/lib/x86_64-linux-gnu/libtk8.5.so -p AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/lib/x86_64-linux-gnu/libtk8.5.so.0 -p AppDir/usr/lib/x86_64-linux-gnu/
-  - cp /usr/share/lintian -p -r AppDir/usr/share/
-  - mkdir AppDir/usr/share/aclocal
-  - cp /usr/share/aclocal/tcl8.5.m4 -p AppDir/usr/share/aclocal/
-  - cp /usr/lib/libitcl3.4.so.1 -p AppDir/usr/lib/
-  - cp /usr/lib/libitcl3.4.so -p AppDir/usr/lib/
-  - cp /usr/lib/libitclstub3.4.a -p AppDir/usr/lib/
-  - cp /usr/lib/libitk3.3.so.1 -p AppDir/usr/lib/
-  - cp /usr/lib/libitk3.3.so -p AppDir/usr/lib/
-  - cp /usr/lib/libitkstub3.3.a -p AppDir/usr/lib/
-  - cp /usr/lib/python2.7 -p -r AppDir/usr/lib/
-  - rm AppDir/AppRun
-  - cp Insight.desktop AppDir/Insight.desktop
+  - bash resources/copy_libs_and_patches.sh
   - wget -O AppDir/AppRun https://github.com/AppImage/AppImageKit/releases/download/continuous/AppRun-x86_64
   - chmod +x AppDir/AppRun
   - wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
@@ -59,10 +23,8 @@ script:
   - ./appimagetool-x86_64.AppImage -g AppDir
 
 after_success:
-  - # wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
-  - # bash upload.sh *.AppImage *zsync
-  - curl --upload-file ./Insight-continuous-x86_64.AppImage https://transfer.sh/Insight-continuous-x86_64.AppImage
-  - curl --upload-file ./Insight-continuous-x86_64.AppImage.zsync https://transfer.sh/Insight-continuous-x86_64.AppImage.zsync
+  - wget "https://github.com/probonopd/uploadtool/raw/master/upload.sh"
+  - bash upload.sh *.AppImage *zsync
 
 branches:
   except:

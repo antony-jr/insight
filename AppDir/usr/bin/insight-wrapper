@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 export PATH=$(pwd)/bin
-insight
+if [ $# -eq 0 ]
+    then
+        insight
+        exit
+fi 
+insight $*
+exit
