@@ -8,6 +8,7 @@
 
 # Required libraries.
 cp /usr/share/tcltk/* -p -r AppDir/usr/lib/
+cp /usr/share/tcltk -p -r AppDir/usr/share/
 cp /usr/bin/tclsh8.5 -p -r AppDir/usr/bin/
 cp /usr/include/tcl8.5 -p -r AppDir/usr/include/
 cp /usr/lib/tcl8.5 -p -r AppDir/usr/lib/
