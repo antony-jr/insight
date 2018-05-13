@@ -1,0 +1,7 @@
+2a3
+> 
+4c5,6
+< package ifneeded Itcl 3.4 [list load [file join /usr lib "libitcl3.4.so.1"] Itcl]
+---
+> package ifneeded Itcl 3.4 [list load [file join $::env(PWD)/ lib "libitcl3.4.so.1"] Itcl]
+> 

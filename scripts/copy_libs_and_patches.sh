@@ -8,7 +8,6 @@
 
 # Required libraries.
 cp /usr/share/tcltk/* -p -r AppDir/usr/lib/
-cp /usr/share/tcltk -p -r AppDir/usr/share/
 cp /usr/bin/tclsh8.5 -p -r AppDir/usr/bin/
 cp /usr/include/tcl8.5 -p -r AppDir/usr/include/
 cp /usr/lib/tcl8.5 -p -r AppDir/usr/lib/
@@ -36,6 +35,6 @@ cp /usr/lib/python2.7 -p -r AppDir/usr/lib/
 rm AppDir/AppRun
 
 # Patches.
-cp patches/Insight.desktop.patched AppDir/Insight.desktop
-cp patches/itcl.pkgIndex.tcl.patched AppDir/usr/lib/itcl3.4/pkgIndex.tcl
-cp patches/itk.pkgIndex.tcl.patched AppDir/usr/lib/itk3.3/pkgIndex.tcl
+patch AppDir/Insight.desktop patches/Insight.desktop.patch
+patch AppDir/usr/lib/itcl3.4/pkgIndex.tcl patches/itcl.pkgIndex.tcl.patch
+patch AppDir/usr/lib/itk3.3/pkgIndex.tcl patches/itk.pkgIndex.tcl.patch
