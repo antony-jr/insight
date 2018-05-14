@@ -33,8 +33,3 @@ cp /usr/lib/libitk3.3.so -p AppDir/usr/lib/
 cp /usr/lib/libitkstub3.3.a -p AppDir/usr/lib/
 cp /usr/lib/python2.7 -p -r AppDir/usr/lib/
 rm AppDir/AppRun
-
-# Patches.
-patch AppDir/Insight.desktop patches/Insight.desktop.patch
-patch AppDir/usr/lib/itcl3.4/pkgIndex.tcl patches/itcl.pkgIndex.tcl.patch
-patch AppDir/usr/lib/itk3.3/pkgIndex.tcl patches/itk.pkgIndex.tcl.patch
