@@ -44,7 +44,8 @@ this can even run in a live boot **without installing anything**, Have fun!
 
 If you want support for **32 bits** then rise a issue because nowadays modern pc's are not **32 bits** but **Jeff Duntemann's** book is dealing with **IA-32** where this tool is required , Irony!
 
-# Original Insight Git Repo
+
+# Upstream Repo
 
 Thanks to **redhat**, Insight's git repo is still kept alive at ```git://sourceware.org/git/insight.git```.   
 But be **warned that building it from source is very challenging when its done in a modern os** and also requires you 
@@ -54,11 +55,12 @@ to provide **Tcl/Tk** libraries externally. *I bet you will be satisfied with th
 
 This portable package is only possible because of these projects , do check them out.
 
+* **[Assembly Step by Step](https://www.amazon.com/Assembly-Language-Step-Step-Programming/dp/0470497025)** - Inspiration to make this project.
 * **[AppImage](https://github.com/appimage/)** - Used to package the portable binary.
 * **[Travis-CI](https://travis-ci.org)** - Used to build insight with an old version of ubuntu.
 * **[Insight/RedHat](https://sourceware.org/insight/)** - Thanks to RedHat for keeping this alive to this date.
 
 # License
 
-Only the scripts and source files used to build and upload the appimage is under , **The MIT License.**   
+Only the **patches** and **build scripts** are under , **The MIT License.**   
 Copyright (C) 2018 Antony Jr.
