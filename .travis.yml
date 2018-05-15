@@ -11,7 +11,8 @@ install:
 
 script:
   - bash scripts/build_and_bundle.sh
-  - export VERSION=$(git rev-parse --short HEAD)
+  - # export VERSION=$(git rev-parse --short HEAD)
+  - export VERSION=continuous
   - wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
   - chmod +x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -bundle-non-qt-libs
