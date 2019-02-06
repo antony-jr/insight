@@ -17,14 +17,14 @@ this can even run in a live boot **without installing anything**, Have fun!
    </tr>
    <tr>
      <td >
-     <a href="https://github.com/antony-jr/insight/releases/download/continuous/Insight-continuous-x86_64.AppImage">
-     <img src="https://img.shields.io/badge/Download-Insight--continuous--x86--64.AppImage-green.svg?longCache=true&style=for-the-badge" alt="Download" /  >
+     <a href="https://github.com/antony-jr/insight/releases/download/continuous/Insight-9ce4fd1-x86_64.AppImage">
+     <img src="https://img.shields.io/badge/Download-Insight--9ce4fd1--x86--64.AppImage-green.svg?longCache=true&style=for-the-badge" alt="Download" /  >
      </a>
      </td>
      <td>
      <pre>
-      $ chmod +x Insight-continuous-x86_64.AppImage
-      $ ./Insight-continuous-x86_64.AppImage
+      $ chmod +x Insight-9ce4fd1-x86_64.AppImage
+      $ ./Insight-9ce4fd1-x86_64.AppImage
      </pre>
      </td>
    </tr>
