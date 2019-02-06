@@ -11,8 +11,7 @@ install:
 
 script:
   - bash scripts/build_and_bundle.sh
-  - # export VERSION=$(git rev-parse --short HEAD)
-  - export VERSION=continuous
+  - export VERSION=$(git submodule status insight | grep -o '[^ ][^ ]*' | grep -m1 '' | cut -c 1-7)
   - wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
   - chmod +x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -bundle-non-qt-libs
@@ -26,7 +25,7 @@ script:
   - ./appimagetool-x86_64.AppImage -g AppDir
 
 after_success:
-  - bash scripts/upload.sh Insight-continuous-x86_64.AppImage *zsync
+  - bash scripts/upload.sh Insight-*-x86_64.AppImage *zsync
 
 branches:
   except:

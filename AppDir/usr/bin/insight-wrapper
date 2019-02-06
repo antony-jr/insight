@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export PATH=$(pwd)/bin
+export PATH=$PATH:$(pwd)/bin
 if [ $# -eq 0 ]
     then
         insight
