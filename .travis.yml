@@ -11,7 +11,6 @@ install:
 
 script:
   - bash scripts/build_and_bundle.sh
-  - ls -a insight
   - export VERSION=$(git submodule status insight | grep -o '[^ ][^ ]*' | grep -m1 '' | cut -c 1-7)
   - wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
   - chmod +x linuxdeployqt-continuous-x86_64.AppImage
