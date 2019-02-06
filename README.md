@@ -13,18 +13,18 @@ this can even run in a live boot **without installing anything**, Have fun!
  <table>
    <tr>
      <th >DOWNLOAD<br></th>
-     <th >INSTALL</th>
+     <th >EXECUTE</th>
    </tr>
    <tr>
      <td >
-     <a href="https://github.com/antony-jr/insight/releases/download/continuous/Insight-continuous-x86_64.AppImage">
-     <img src="https://img.shields.io/badge/Download-Insight--continuous--x86--64.AppImage-green.svg?longCache=true&style=for-the-badge" alt="Download" /  >
+     <a href="https://github.com/antony-jr/insight/releases">
+     <img src="https://img.shields.io/badge/Download-Insight--x86--64.AppImage-green.svg?longCache=true&style=for-the-badge" alt="Download" /  >
      </a>
      </td>
      <td>
      <pre>
-      $ chmod +x Insight-continuous-x86_64.AppImage
-      $ ./Insight-continuous-x86_64.AppImage
+      $ chmod +x Insight-*-x86_64.AppImage
+      $ ./Insight-*-x86_64.AppImage
      </pre>
      </td>
    </tr>
