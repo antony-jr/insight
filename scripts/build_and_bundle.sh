@@ -5,6 +5,7 @@
 # Compiles insight from source
 # and installs in the AppDir.
 # -------------------------------
+# 
 install_dir=$(pwd)/AppDir
 cd insight/
 autoconf
