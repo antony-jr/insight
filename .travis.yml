@@ -25,7 +25,10 @@ script:
   - ./appimagetool-x86_64.AppImage -g AppDir
 
 after_success:
-  - bash scripts/upload.sh Insight-*-x86_64.AppImage *zsync
+  - curl --upload-file ./Insight-*-x86_64.AppImage "https://transfer.sh/Insight.AppImage" > ./one-upload
+  - echo "$(cat ./one-upload)" # this way we get a newline
+  - echo -n "$(cat ./one-upload)\\n" >> ./uploaded-to
+  - # bash scripts/upload.sh Insight-*-x86_64.AppImage *zsync
 
 branches:
   except:
