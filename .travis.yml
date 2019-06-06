@@ -1,13 +1,14 @@
 language: cpp
 compiler: gcc
 sudo: require
-dist: xenial
+dist: trusty
 
 before_install:
   - sudo apt-get update -qq
 
 install:
   - sudo bash scripts/install_deps.sh
+  - sudo bash scripts/update_gcc.sh
 
 script:
   - bash scripts/build_and_bundle.sh
