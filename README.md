@@ -9,6 +9,9 @@ Infact you **don't even have to install anything** , **Just download a binary an
 Download the **binary** and **mark it executable** as mentioned in the **table below** , This **does not depend on anything**
 this can even run in a live boot **without installing anything**, Have fun!
 
+**Note**: If the version below did not work try a older version which can be downloaded from the releases page.
+
+
 <p align="center">
  <table>
    <tr>
@@ -17,14 +20,14 @@ this can even run in a live boot **without installing anything**, Have fun!
    </tr>
    <tr>
      <td >
-     <a href="https://github.com/antony-jr/insight/releases/download/continuous/Insight-1b74f77-x86_64.AppImage">
-     <img src="https://img.shields.io/badge/Download-Insight--1b74f77--x86--64.AppImage-green.svg?longCache=true&style=for-the-badge" alt="Download" /  >
+     <a href="https://github.com/antony-jr/insight/releases/download/continuous/Insight-90f2e23-x86_64.AppImage">
+     <img src="https://img.shields.io/badge/Download-Insight--90f2e23--x86--64.AppImage-green.svg?longCache=true&style=for-the-badge" alt="Download" /  >
      </a>
      </td>
      <td>
      <pre>
-      $ chmod +x Insight-1b74f77-x86_64.AppImage
-      $ ./Insight-1b74f77-x86_64.AppImage
+      $ chmod +x Insight-90f2e23-x86_64.AppImage
+      $ ./Insight-90f2e23-x86_64.AppImage
      </pre>
      </td>
    </tr>
