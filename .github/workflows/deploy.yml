@@ -1,0 +1,170 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Check:
+    runs-on: ubuntu-16.04
+    outputs:
+      deploy: ${{ steps.check.outputs.check }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Python3
+        run: |
+          sudo apt install -y python3
+
+      - id: check
+        name: Check Commit Message
+        run: |
+          git clone https://github.com/antony-jr/insight
+          cd insight
+          git tag > /tmp/tags.txt
+          cd ..
+          rm -rf insight
+          cat /tmp/tags.txt
+          result=$(python3 scripts/check.py "$(git log -1 --pretty=%B)" "/tmp/tags.txt")
+          echo "::set-output name=check::$result"
+  BuildAndDeploy:
+    name: "Build And Deploy"
+    runs-on: ubuntu-16.04
+    needs: Check
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo bash scripts/install_deps.sh
+          sudo bash scripts/update_gcc.sh
+
+      - name: Build AppImage Insight
+        id: appimage_build
+        run: |
+          git clone git://sourceware.org/git/insight.git
+          cd insight
+          deploy=${{ needs.Check.outputs.deploy }} 
+          if [ "$deploy" = "false" ]
+            then
+            export tag="development"
+            export VERSION=$(git rev-parse --short HEAD)
+            git checkout master
+          else
+            export tag="latest"
+            export VERSION=$deploy
+            git checkout $deploy
+          fi
+          git submodule init
+          git submodule update # Download all required submodules.
+ 
+          cd ..
+          bash scripts/build_and_bundle.sh
+
+          # Build AppImages 
+          wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+          chmod +x linuxdeployqt-continuous-x86_64.AppImage
+          ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -bundle-non-qt-libs
+
+          bash scripts/copy_libs.sh
+          bash scripts/apply_patches.sh
+          bash scripts/purge_unwanted.sh
+         
+          # Don't know why I did this in the past but "If it runs then why change?" xD :D
+          wget -O AppDir/AppRun https://github.com/AppImage/AppImageKit/releases/download/continuous/AppRun-x86_64
+          chmod +x AppDir/AppRun
+
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          
+          ./appimagetool-x86_64.AppImage -u "gh-releases-zsync|antony-jr|insight|$tag|Insight*-x86_64.AppImage.zsync" AppDir
+
+          wget -q "https://github.com/antony-jr/MakeAppImageTorrent/releases/download/Mk-2/MakeAppImageTorrent-609383f-x86_64.AppImage"
+          chmod +x MakeAppImageTorrent-609383f-x86_64.AppImage
+
+          ./MakeAppImageTorrent-609383f-x86_64.AppImage Insight-*-x86_64.AppImage 
+
+          echo ::set-output name=appimagefile::Insight-$VERSION-x86_64.AppImage
+          echo ::set-output name=zsyncfile::Insight-$VERSION-x86_64.AppImage.zsync
+          echo ::set-output name=torrentfile::Insight-$VERSION-x86_64.AppImage.torrent
+          
+          # Remove development appimages.
+          rm -rf MakeAppImageTorrent*
+          rm -rf appimagetool*
+          rm -rf linuxdeployqt*
+
+          # Check if all files needed are generated.
+          file Insight-$VERSION-x86_64.AppImage
+          file Insight-$VERSION-x86_64.AppImage.zsync
+          file Insight-$VERSION-x86_64.AppImage.torrent
+
+      - name: Delete Old Development GUI Builds
+        if: needs.Check.outputs.deploy == 'false'
+        uses: mknejp/delete-release-assets@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: development
+          assets: Insight-*-x86_64.AppImage*
+          fail-if-no-assets: false
+          fail-if-no-release: false
+
+      - name: Upload Development GUI Build
+        if: needs.Check.outputs.deploy == 'false'
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./Insight-*-x86_64.AppImage*
+          tag: development
+          overwrite: true
+          file_glob: true
+          prerelease: true
+          release_name: "Insight Development Builds"
+          body: "Fresh build of master branch of the upstream repo."
+
+      - name: Create Release
+        if: needs.Check.outputs.deploy != 'false'
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.Check.outputs.deploy }}
+          release_name: Release ${{ needs.Check.outputs.deploy }}
+          body_path: ./release_notes/${{ needs.Check.outputs.deploy }}.md
+          draft: false
+          prerelease: false
+
+      - name: Upload AppImage Release Asset
+        if: needs.Check.outputs.deploy != 'false'
+        uses: actions/upload-release-asset@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{steps.appimage_build.outputs.appimagefile}}
+          asset_name: ${{steps.appimage_build.outputs.appimagefile}}
+          asset_content_type: application/octet-stream
+
+      - name: Upload AppImage Zsync File Release Asset
+        if: needs.Check.outputs.deploy != 'false'
+        uses: actions/upload-release-asset@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{steps.appimage_build.outputs.zsyncfile}}
+          asset_name: ${{steps.appimage_build.outputs.zsyncfile}}
+          asset_content_type: application/octet-stream
+
+      - name: Upload AppImage Torrent File Release Asset
+        if: needs.Check.outputs.deploy != 'false'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{steps.appimage_build.outputs.torrentfile}}
+          asset_name: ${{steps.appimage_build.outputs.torrentfile}}
+          asset_content_type: application/octet-stream
