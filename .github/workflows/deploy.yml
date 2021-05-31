@@ -64,7 +64,7 @@ jobs:
           bash scripts/build_and_bundle.sh
 
           # Build AppImages 
-          wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+          wget -q https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
           chmod +x linuxdeployqt-continuous-x86_64.AppImage
           ./linuxdeployqt-continuous-x86_64.AppImage AppDir/Insight.desktop -bundle-non-qt-libs
 
@@ -73,7 +73,7 @@ jobs:
           bash scripts/purge_unwanted.sh
          
           # Don't know why I did this in the past but "If it runs then why change?" xD :D
-          wget -O AppDir/AppRun https://github.com/AppImage/AppImageKit/releases/download/continuous/AppRun-x86_64
+          wget -q -O AppDir/AppRun https://github.com/AppImage/AppImageKit/releases/download/continuous/AppRun-x86_64
           chmod +x AppDir/AppRun
 
           wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage

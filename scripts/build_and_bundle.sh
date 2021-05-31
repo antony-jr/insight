@@ -7,8 +7,8 @@
 # -------------------------------
 # 
 install_dir=$(pwd)/AppDir
-autoconf
 cd insight
+autoconf
 chmod +x configure
 ./configure	--prefix=/usr/.						\
 		--disable-binutils					\
