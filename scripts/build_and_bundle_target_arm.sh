@@ -20,8 +20,20 @@ chmod +x configure
 		--disable-rpath						\
 		--disable-zlib						\
 		--without-libunwind					\
-		--without-isl
+		--without-isl						\
+		--host=x86_64-pc-linux-gnu				\
+		--target=arm-linux-gnueabi				\
+		--disable-werror
 
 make -j$(nproc)
 make DESTDIR=$install_dir install -j$(nproc)
 cd ..
+
+# Patch to make the desktop file point to the 
+# arm version of insight which sets the path and other 
+patch AppDir/Insight.desktop patches/Insight.desktop.target_arm.patch
+# ------
+
+# Patch to make the insight wrapper work correctly.
+patch AppDir/usr/bin/insight-wrapper patches/insight-wrapper.target_arm.patch
+

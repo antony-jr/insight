@@ -1,0 +1,8 @@
+5c5
+<         insight
+---
+>         arm-linux-gnueabi-insight
+8c8
+< insight $*
+---
+> arm-linux-gnueabi-insight $*

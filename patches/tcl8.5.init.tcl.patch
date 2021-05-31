@@ -1,0 +1,31 @@
+13a14,20
+> # -------------------------------------------------------------------------
+> # The MIT License. 
+> # Copyright (C) 2018 Antony Jr.
+> # Patched file to change the hardcoded tcl_pkgPath variable to a dynamic
+> # one.
+> # Also added some intro messages for logging.
+> # -------------------------------------------------------------------------
+39a47,68
+> # --------------------------------------------------------------------------
+> # We seriously need to change the tcl_pkgPath to make it work even if a 
+> # existing installation is present. 
+> 
+> # Some basic info.
+> # These just lets us know that we are using the bundled stuff
+> # and not the host systems stuff.
+> puts { Starting Insight , Tcl/TK GDB Frontend. }
+> puts { Using Bundled TCL Packages. }
+> puts { AppImage Packaged by Antony Jr. (https://github.com/antony-jr) }
+> puts { Report issues and bugs at https://github.com/antony-jr/insight/issues/ }
+> # ---------
+> 
+> # Note: When AppImage mounts , The mount path is random so 
+> # we should not depend on hardcoded paths.
+> puts { Changing tcl_pkgPath }
+> puts { From:: }
+> puts $::tcl_pkgPath
+> set tcl_pkgPath $::env(PWD)/lib 
+> puts { To:: }
+> puts $::tcl_pkgPath
+> # ---------

@@ -1,0 +1,4 @@
+4c4
+< Exec=arm-linux-gnueabi-insight
+---
+> Exec=insight

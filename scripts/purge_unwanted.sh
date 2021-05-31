@@ -42,5 +42,5 @@ rm -rf AppDir/usr/share/doc \
        AppDir/usr/share/info \
        AppDir/usr/share/locale
 
-# Remove tcl8.5 which is never used.
-rm -rf AppDir/usr/lib/tcl8.5
+# (DO NOT) Remove tcl8.5 which is never used.
+# rm -rf AppDir/usr/lib/tcl8.5

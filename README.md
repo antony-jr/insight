@@ -1,4 +1,4 @@
-# Insight [![Build Status](https://travis-ci.org/antony-jr/insight.svg?branch=master)](https://travis-ci.org/antony-jr/insight)
+# Insight [![Deploy](https://github.com/antony-jr/insight/actions/workflows/deploy.yml/badge.svg)](https://github.com/antony-jr/insight/actions/workflows/deploy.yml)
  
 **Insight** is a graphical user interface to **GDB**, the **GNU Debugger** written in **Tcl/Tk** by people working at **Red Hat, Inc**. and **Cygnus Solutions**. Red Hat has generously **donated** Insight to the **public** and even pays a few people to work on it occasionally.
 
@@ -9,7 +9,7 @@ Infact you **don't even have to install anything** , **Just download a binary an
 Download the **binary** and **mark it executable** as mentioned in the **table below** , This **does not depend on anything**
 this can even run in a live boot **without installing anything**, Have fun!
 
-**Note**: If the version below did not work try a older version which can be downloaded from the releases page.
+**Note**: If the version below did not work try a older version which can be downloaded from the releases page. You can also download experimental AppImages from **Development Builds** in the releases page.
 
 
 <p align="center">
@@ -39,9 +39,6 @@ this can even run in a live boot **without installing anything**, Have fun!
 </p>
 
 
-> A Tcl/Tk Frontend for GDB. This is a portable package of insight for the sake of Jeff Duntemann's amazing book.
-> -- Antony Jr.
-
 
 **Important note:** Please use **absolute paths** when using command line arguments like ``` -q ./YourApp ```.   
 
@@ -60,7 +57,6 @@ This portable package is only possible because of these projects , do check them
 
 * **[Assembly Step by Step](https://www.amazon.com/Assembly-Language-Step-Step-Programming/dp/0470497025)** - Inspiration to make this project.
 * **[AppImage](https://github.com/appimage/)** - Used to package the portable binary.
-* **[Travis-CI](https://travis-ci.org)** - Used to build insight with an old version of ubuntu.
 * **[Insight/RedHat](https://sourceware.org/insight/)** - Thanks to RedHat for keeping this alive to this date.
 
 # License
