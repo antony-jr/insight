@@ -20,18 +20,31 @@ this can even run in a live boot **without installing anything**, Have fun!
    </tr>
    <tr>
      <td >
-     <a href="https://github.com/antony-jr/insight/releases/download/continuous/Insight-90f2e23-x86_64.AppImage">
-     <img src="https://img.shields.io/badge/Download-Insight--90f2e23--x86--64.AppImage-green.svg?longCache=true&style=for-the-badge" alt="Download" /  >
+     <a href="https://github.com/antony-jr/insight/releases/download/8180966/Insight-x86_64-pc-linux-gnu-8180966-x86_64.AppImage">
+     <img src="https://img.shields.io/badge/DOWNLOAD-Insight%20(Target%20x86__64)-green" alt="Download" /  >
      </a>
      </td>
      <td>
      <pre>
-      $ chmod +x Insight-90f2e23-x86_64.AppImage
-      $ ./Insight-90f2e23-x86_64.AppImage
+      $ chmod +x Insight-x86_64-pc-linux-gnu-8180966-x86_64.AppImage
+      $ ./Insight-x86_64-pc-linux-gnu-8180966-x86_64.AppImage
      </pre>
      </td>
    </tr>
- </table>
+   <tr>
+     <td >
+     <a href="https://github.com/antony-jr/insight/releases/download/8180966/Insight-arm-linux-gnueabi-8180966-x86_64.AppImage">
+     <img src="https://img.shields.io/badge/DOWNLOAD-Insight%20(Target%20ARM)-green" alt="Download" /  >
+     </a>
+     </td>
+     <td>
+     <pre>
+      $ chmod +x Insight-arm-linux-gnueabi-8180966-x86_64.AppImage
+      $ ./Insight-arm-linux-gnueabi-8180966-x86_64.AppImage
+     </pre>
+     </td>
+   </tr>
+</table>
 </p>
 
 <p align=center>

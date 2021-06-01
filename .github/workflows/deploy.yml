@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-16.04
     outputs:
       deploy: ${{ steps.check.outputs.check }}
+      release_tag: ${{ steps.check.outputs.short_check }}
     steps:
       - uses: actions/checkout@v2
 
@@ -28,6 +29,8 @@ jobs:
           cat /tmp/tags.txt
           result=$(python3 scripts/check.py "$(git log -1 --pretty=%B)" "/tmp/tags.txt")
           echo "::set-output name=check::$result"
+          short_result=$(echo $result | head -c 7)
+          echo "::set-output name=short_check::$short_result"
   BuildAndDeploy:
     name: "Build And Deploy"
     runs-on: ubuntu-16.04
@@ -207,8 +210,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.Check.outputs.deploy }}
-          release_name: Release ${{ needs.Check.outputs.deploy }}
+          tag_name: ${{ needs.Check.outputs.release_tag }}
+          release_name: Release ${{ needs.Check.outputs.release_tag }}
           body_path: ./release_notes/${{ needs.Check.outputs.deploy }}.md
           draft: false
           prerelease: false
