@@ -7,7 +7,7 @@ on:
 
 jobs:
   Check:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     outputs:
       deploy: ${{ steps.check.outputs.check }}
       release_tag: ${{ steps.check.outputs.short_check }}
@@ -33,7 +33,7 @@ jobs:
           echo "::set-output name=short_check::$short_result"
   BuildAndDeploy:
     name: "Build And Deploy"
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     needs: Check
     steps:
       - uses: actions/checkout@v2
@@ -42,7 +42,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo bash scripts/install_deps.sh
-          sudo bash scripts/update_gcc.sh
+          # sudo bash scripts/update_gcc.sh
 
       - name: Build Insight (Target x86_64)
         id: appimage_build_target_x86_64
