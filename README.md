@@ -51,12 +51,29 @@ this can even run in a live boot **without installing anything**, Have fun!
 <img src=.img/screenshot.png height=auto width=auto alt="Insight Debugger"> 
 </p>
 
+# Installation
 
+Just execute this single line of command in the terminal of your linux distro to install
+insight into system, this integrates Insight into application menu also your path so you
+can use insight just like you installed from a package manager.
 
-**Important note:** Please use **absolute paths** when using command line arguments like ``` -q ./YourApp ```.   
+```
+  curl -Ls "https://raw.githubusercontent.com/antony-jr/insight/master/install.sh" | bash -s
+```
 
-If you want support for **32 bits** then rise a issue because nowadays modern pc's are not **32 bits** but **Jeff Duntemann's** book is dealing with **IA-32** where this tool is required , Irony!
+Use like this,
 
+```
+ insight your_executable
+```
+
+# Updating Insight
+
+Delta update your Insight since each release of Insight is getting huge.
+
+```
+ curl -Ls "https://raw.githubusercontent.com/antony-jr/insight/master/update.sh" | bash -s
+```
 
 # Upstream Repo
 

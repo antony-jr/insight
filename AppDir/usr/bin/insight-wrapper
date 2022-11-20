@@ -4,6 +4,26 @@ if [ $# -eq 0 ]
     then
         insight
         exit
-fi 
-insight $*
+fi
+
+# Fix insight cli needs absolute paths of 
+# executable to open it when it starts.
+# Note:
+#  $OWD is set when AppImage is started
+#  which points to the path where AppImage
+#  is invoked from.
+args=("$@")
+declare -a finalopts
+finalopts=()
+for ((i=0; i<"${#args[@]}"; ++i)); do
+    readlink -f $OWD/${args[i]} >/dev/null 2>&1
+    
+    if [ $? -eq 0 ]; then
+       export file=$(readlink -f $OWD/${args[i]})
+       finalopts+=($file)
+    else
+       finalopts+=("${args[i]}")
+    fi
+done
+insight "${finalopts[@]}"
 exit

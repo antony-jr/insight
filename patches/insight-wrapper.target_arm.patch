@@ -1,8 +1,18 @@
-5c5
-<         insight
----
->         arm-linux-gnueabi-insight
-8c8
-< insight $*
----
-> arm-linux-gnueabi-insight $*
+--- insight-wrapper	2022-11-20 19:21:08.127579300 +0530
++++ new	2022-11-20 19:30:27.576280652 +0530
+@@ -2,7 +2,7 @@
+ export PATH=$PATH:$(pwd)/bin
+ if [ $# -eq 0 ]
+     then
+-        insight
++        arm-linux-gnueabi-insight
+         exit
+ fi
+ 
+@@ -25,5 +25,5 @@
+        finalopts+=("${args[i]}")
+     fi
+ done
+-insight "${finalopts[@]}"
++arm-linux-gnueabi-insight "${finalopts[@]}"
+ exit
